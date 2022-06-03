@@ -12,7 +12,7 @@
         <form th:action="@{index}" method="get">
             <div class="form-group">
                 <label>Mot clé:</label>
-                <input type="text" name="motCle">
+                <input type="text" name="motCle" th:value="${motCle}">
                 <button type="submit">Chercher</button>
             </div>
         </form>
@@ -52,7 +52,7 @@
     <div class="container">
         <ul class="nav  nav-pills">
             <li th:each="p:${pages}" th:class="${p==pageCourante}?active:''">
-                <a class="btn btn-muted m-lg-1" th:text="${p}" th:href="@{index(page=${p})}"></a>
+                <a class="btn btn-muted m-lg-1" th:text="${p}" th:href="@{index(page=${p},motCle=${motCle})}"></a>
             </li>
         </ul>
     </div>>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
+<head>
+    <meta charset="UTF-8">
+    <title>Editer étudiant</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <section layout:fragment="content1">
+        <div class="col-md-6 col-sm-6 col-xs-12 spacer offset-md-3 offset-sm-3 offset-xs-6">
+        <div class="card">
+            <div class="card-header text-center">Editer d'un étudiant</div>
+            <div class="card-body">
+                <div class="card-text">
+                    <form th:action="@{UpdateEtudiant}" method="post" th:object="${etudiant}" enctype="multipart/form-data">
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">ID</label>
+                            <input type="text" class="form-control" id="id" th:field="*{id}">
+                            <span class="text-danger" th:errors="*{id}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="nom" class="form-label">Nom</label>
+                            <input type="text" class="form-control" id="nom" th:field="*{nom}">
+                            <span class="text-danger" th:errors="*{nom}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="dateNaissance" class="form-label">Date de naissance</label>
+                            <input type="date" class="form-control" id="dateNaissance" th:field="*{dateNaissance}">
+                            <span class="text-danger" th:errors="*{dateNaissance}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" th:field="*{email}">
+                            <span class="text-danger" th:errors="*{email}"></span>
+                        </div>
+                        <div class="mb-3">
+                            <label for="photo" class="form-label">Photo</label>
+                            <input type="file" class="form-control" id="photo" name="picture">
+                            <span class="text-danger" th:errors="*{photo}"></span>
+                            <img class="rounded-circle" th:src="@{getPhoto(id=${etudiant.id})}" width="50" height="50"/>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Modifier</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        </div>
+    </section>
+</body>
+</html>

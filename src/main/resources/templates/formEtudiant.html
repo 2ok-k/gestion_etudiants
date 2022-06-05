@@ -1,5 +1,7 @@
 <!DOCTYPE html>
-<html lang="fr" xmlns:th="http://www.thymeleaf.org">
+<html lang="fr" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="template">
 <head>
     <meta charset="UTF-8">
     <title>Ajout étudiant</title>
@@ -7,37 +9,41 @@
     <link rel="stylesheet" th:href="@{/css/style.css}">
 </head>
 <body>
-    <div class="col-md-6 col-sm-6 col-xs-12 spacer offset-md-3 offset-sm-3 offset-xs-6">
-        <div class="card">
-            <div class="card-header text-center">Saisie d'un étudiant</div>
-            <div class="card-body">
-                <div class="card-text">
-                    <form th:action="@{SaveEtudiant}" method="post" th:object="${etudiant}">
-                        <div class="mb-3">
-                            <label for="nom" class="form-label">Nom</label>
-                            <input type="text" class="form-control" id="nom" th:field="*{nom}">
-                            <span></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="dateNaissance" class="form-label">Date de naissance</label>
-                            <input type="date" class="form-control" id="dateNaissance" th:field="*{dateNaissance}">
-                            <span></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" th:field="*{email}">
-                            <span></span>
-                        </div>
-                        <div class="mb-3">
-                            <label for="photo" class="form-label">Photo</label>
-                            <input type="file" class="form-control" id="photo" th:field="*{photo}">
-                            <span></span>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Ajouter</button>
-                    </form>
+
+    <section layout:fragment="content1">
+        <div class="col-md-6 col-sm-6 col-xs-12 spacer offset-md-3 offset-sm-3 offset-xs-6">
+            <div class="card">
+                <div class="card-header text-center">Saisie d'un étudiant</div>
+                <div class="card-body">
+                    <div class="card-text">
+                        <form th:action="@{SaveEtudiant}" method="post" th:object="${etudiant}" enctype="multipart/form-data">
+                            <div class="mb-3">
+                                <label for="nom" class="form-label">Nom</label>
+                                <input type="text" class="form-control" id="nom" th:field="*{nom}">
+                                <span class="text-danger" th:errors="*{nom}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="dateNaissance" class="form-label">Date de naissance</label>
+                                <input type="date" class="form-control" id="dateNaissance" th:field="*{dateNaissance}">
+                                <span class="text-danger" th:errors="*{dateNaissance}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                <input type="email" class="form-control" id="email" th:field="*{email}">
+                                <span class="text-danger" th:errors="*{email}"></span>
+                            </div>
+                            <div class="mb-3">
+                                <label for="photo" class="form-label">Photo</label>
+                                <input type="file" class="form-control" id="photo" name="picture">
+                                <span class="text-danger" th:errors="*{photo}"></span>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Ajouter</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+    </section>
+
 </body>
 </html>
